@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navigation;
 
     private StoreFragment storeFragment;
+    private CartFragment cartFragment;
+    private  ProfileFragment profileFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -24,14 +26,13 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_store:
-                    //mTextMessage.setText(R.string.title_store);
                     setFragment(storeFragment);
                     return true;
                 case R.id.navigation_cart:
-                    //mTextMessage.setText(R.string.title_cart);
+                    setFragment(cartFragment);
                     return true;
                 case R.id.navigation_profile:
-                    //mTextMessage.setText(R.string.title_profile);
+                    setFragment(profileFragment);
                     return true;
             }
             return false;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         storeFragment = new StoreFragment();
+        cartFragment = new CartFragment();
+        profileFragment = new ProfileFragment();
+
+        setFragment(storeFragment);
 
         mainFrame = (FrameLayout) findViewById(R.id.mainFrame);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
