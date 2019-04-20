@@ -54,13 +54,13 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_width="200dp"
+                android:layout_width="160dp"
                 android:layout_height="50dp"
                 android:background="@color/colorWhite">
 
                 <Spinner
                     android:id="@+id/rent_size"
-                    android:layout_width="200dp"
+                    android:layout_width="160dp"
                     android:layout_height="50dp"
                     android:backgroundTint="#d11f08"
                     android:padding="5dp" />
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="30dp"
                 android:text="Price"
                 app:fontFamily="sans-serif-medium" />
 
@@ -92,9 +92,9 @@
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/layout_rentnow"
+            android:fontFamily="sans-serif-medium"
             android:text="Rent Now"
             android:textColor="@color/colorWhite"
-            android:fontFamily="sans-serif-medium"
             android:textSize="14sp" />
 
     </LinearLayout>

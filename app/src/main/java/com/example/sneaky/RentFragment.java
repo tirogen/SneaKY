@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -42,18 +44,25 @@ public class RentFragment extends Fragment {
         TextView rt_name = (TextView)view.findViewById(R.id.rent_name);
         TextView rt_price = (TextView)view.findViewById(R.id.rent_price);
         ImageView rt_image = (ImageView)view.findViewById(R.id.rent_image);
-        Spinner rt_size = (Spinner)view.findViewById(R.id.rent_size);
+        final Spinner rt_size = (Spinner)view.findViewById(R.id.rent_size);
+        Button rt_rent = (Button)view.findViewById(R.id.rent_rent);
 
         rt_name.setText(this.rent_name);
         rt_price.setText("฿"+this.rent_price);
         rt_image.setImageResource(this.rent_image);
 
         String[] plants = new String[]{"Size 8","Size 8.5","Size 9","Size 9.5","Size 10","Size 10.5","Size 11","Size 11.5","Size 12"};
-
-        // Initializing an ArrayAdapter
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,plants);
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         rt_size.setAdapter(spinnerArrayAdapter);
+
+        rt_rent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),rent_name + " : " + rt_size.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
     }
 
