@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rentFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RentFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/rent_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Off White x Air jordan 1"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp"
+            app:fontFamily="sans-serif-black" />
+
+        <ImageView
+            android:id="@+id/rent_image"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="30dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:background="@drawable/layout_shadow"
+            tools:src="@drawable/nike" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            app:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This sneaker is able to rent for 30 days"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:background="@color/colorWhite">
+
+                <Spinner
+                    android:id="@+id/rent_size"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:backgroundTint="#d11f08"
+                    android:padding="5dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:text="Price"
+                app:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/rent_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="฿12345"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorGreen"
+                android:textSize="30sp"
+                app:fontFamily="sans-serif-medium" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/rent_rent"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/layout_rentnow"
+            android:text="Rent Now"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</FrameLayout>

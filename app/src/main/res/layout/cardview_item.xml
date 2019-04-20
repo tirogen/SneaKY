@@ -5,8 +5,10 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:layout_width="210dp"
-    android:layout_height="330dp"
+    android:layout_height="220dp"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    cardview:cardBackgroundColor="@android:color/transparent"
+    android:outlineProvider="none"
     cardview:cardCornerRadius="4dp">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,36 +17,36 @@
 
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="@color/colorPrimary"
-            android:scaleType="centerCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/ic_shopping_cart_black_24dp"/>
+            android:scaleType="fitStart"
+            android:src="@drawable/nike"/>
 
         <TextView
             android:id="@+id/item_price"
-            android:layout_width="85dp"
-            android:layout_height="37dp"
+            android:layout_width="70dp"
+            android:layout_height="27dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:background="@drawable/layout_price"
             android:gravity="center"
-            android:text="$690"
+            android:text="฿10690"
             android:textSize="14sp"
             cardview:fontFamily="sans-serif-medium"
             android:textColor="@color/colorWhite"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="7dp"/>
 
         <TextView
             android:id="@+id/item_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="name"
-            android:textSize="14sp"
-            android:layout_below="@id/item_image"/>
+            android:layout_below="@id/item_image"
+            android:gravity="top"
+            android:text="Off White x Air jordan 1"
+            android:textSize="18sp"
+            cardview:fontFamily="sans-serif-medium" />
 
     </RelativeLayout>
 
