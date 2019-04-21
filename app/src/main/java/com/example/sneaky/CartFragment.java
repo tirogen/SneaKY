@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.thekhaeng.recyclerviewmargin.LayoutMarginDecoration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
@@ -60,6 +61,7 @@ public class CartFragment extends Fragment {
                     Cart item = data.getValue(Cart.class);
                     cSneaker.add(item);
                 }
+                Collections.reverse(cSneaker);
                 rcv.setAdapter(new RecyclerCartAdapter(getActivity(),cSneaker));
             }
 
