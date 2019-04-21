@@ -14,22 +14,32 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RentFragment extends Fragment {
 
+    private int sneaker;
     private String rent_name;
     private int rent_price;
-    private int rent_image;
+    private String rent_image;
 
     public RentFragment() {
         // Required empty public constructor
     }
 
     @SuppressLint("ValidFragment")
-    public RentFragment(String rent_name, int rent_price, int rent_image){
+    public RentFragment(int sneaker, String rent_name, int rent_price, String rent_image){
+        this.sneaker = sneaker;
         this.rent_name = rent_name;
         this.rent_price = rent_price;
         this.rent_image = rent_image;
@@ -49,17 +59,27 @@ public class RentFragment extends Fragment {
 
         rt_name.setText(this.rent_name);
         rt_price.setText("฿"+this.rent_price);
-        rt_image.setImageResource(this.rent_image);
+        Picasso.get().load(this.rent_image)
+                .error(R.drawable.sneaker)
+                .placeholder(R.drawable.sneaker)
+                .into(rt_image);
 
-        String[] plants = new String[]{"Size 8","Size 8.5","Size 9","Size 9.5","Size 10","Size 10.5","Size 11","Size 11.5","Size 12"};
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,plants);
+        String[] size = new String[]{"Size 8","Size 8.5","Size 9","Size 9.5","Size 10","Size 10.5","Size 11","Size 11.5","Size 12"};
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,size);
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         rt_size.setAdapter(spinnerArrayAdapter);
 
         rt_rent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),rent_name + " : " + rt_size.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+
+                String key = "6031032921";
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                CartModel cartData = new CartModel(rent_name, rent_price, rent_image, rt_size.getSelectedItem().toString(), new Timestamp(System.currentTimeMillis()), "On progress", "Waiting Contact");
+                DatabaseReference mUsers = mDatabase.child("user").child(key);
+                mUsers.push().setValue(cartData);
+
+                Toast.makeText(getActivity(),rent_name + " : " + rt_size.getSelectedItem().toString(),Toast.LENGTH_LONG).show();
             }
         });
 

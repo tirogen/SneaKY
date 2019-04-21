@@ -4,9 +4,11 @@ public class Sneaker {
 
     private String name;
     private int price;
-    private int image;
+    private String image;
 
-    public Sneaker(String name, int price, int image) {
+    public  Sneaker(){}
+
+    public Sneaker(String name, int price, String image) {
         this.name = name;
         this.price = price;
         this.image = image;
@@ -20,7 +22,7 @@ public class Sneaker {
         return price;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -32,7 +34,7 @@ public class Sneaker {
         this.price = price;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

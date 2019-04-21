@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -36,16 +38,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(ViewHolder viewHolder, final int i) {
         viewHolder.sneaker_name.setText(mData.get(i).getName());
         viewHolder.sneaker_price.setText("฿"+(int) mData.get(i).getPrice());
-        viewHolder.sneaker_image.setImageResource(mData.get(i).getImage());
+        Picasso.get().load(mData.get(i).getImage())
+                    .error(R.drawable.sneaker)
+                    .placeholder(R.drawable.sneaker)
+                    .into(viewHolder.sneaker_image);
+
         viewHolder.sneaker_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(context,"test click",Toast.LENGTH_SHORT).show();
                 FragmentTransaction fragmentTransaction = ((AppCompatActivity) view.getContext()).getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.mainFrame, new RentFragment(mData.get(i).getName(),(int) mData.get(i).getPrice(), mData.get(i).getImage()));
+                fragmentTransaction.replace(R.id.mainFrame, new RentFragment(999 ,mData.get(i).getName(),(int) mData.get(i).getPrice(), mData.get(i).getImage()));
                 fragmentTransaction.commit();
 
             }
