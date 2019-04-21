@@ -55,9 +55,9 @@ public class CartFragment extends Fragment {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                cSneaker.clear();
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     Cart item = data.getValue(Cart.class);
-                    //Log.d(TAG,item.getName());
                     cSneaker.add(item);
                 }
                 rcv.setAdapter(new RecyclerCartAdapter(getActivity(),cSneaker));
@@ -66,7 +66,7 @@ public class CartFragment extends Fragment {
             @Override
             public void onCancelled(DatabaseError error) {
                 Toast.makeText(getActivity(),"Failed to read value",Toast.LENGTH_LONG).show();
-                Log.w(TAG, "Failed to read value.", error.toException());
+                //Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
 

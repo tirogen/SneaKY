@@ -16,12 +16,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CART"
-            android:textSize="24sp"
-            android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_marginTop="20dp"
-            app:fontFamily="sans-serif-medium" />
+            android:gravity="center"
+            android:text="CART"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp"
+            app:fontFamily="sans-serif-black" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/cart"
@@ -30,6 +30,11 @@
             android:padding="20dp"
             android:clipToPadding="false"
             android:scrollbarStyle="outsideOverlay" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp" />
     </LinearLayout>
 
 </FrameLayout>
