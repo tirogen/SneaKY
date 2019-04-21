@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,7 +77,7 @@ public class RentFragment extends Fragment {
 
                 String key = "6031032921";
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                CartModel cartData = new CartModel(rent_name, rent_price, rent_image, rt_size.getSelectedItem().toString(), new Timestamp(System.currentTimeMillis()), "On progress", "Waiting Contact");
+                CartModel cartData = new CartModel(rent_name, rent_price, rent_image, rt_size.getSelectedItem().toString(), new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()), "On progress", "Waiting Contact");
                 DatabaseReference mUsers = mDatabase.child("user").child(key);
                 mUsers.push().setValue(cartData);
 

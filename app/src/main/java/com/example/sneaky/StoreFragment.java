@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -50,8 +51,6 @@ public class StoreFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_store, container, false);
 
         lSneaker = new ArrayList<>();
-
-        //lSneaker.add(new Sneaker("TEST IMAGE",456,"http://i.imgur.com/DvpvklR.png"));
         rcv = (RecyclerView) view.findViewById(R.id.recyclerview);
         rcv.setLayoutManager(new GridLayoutManager(getActivity(),2));
         rcv.addItemDecoration( new LayoutMarginDecoration( 2, 60 ) );
@@ -59,16 +58,15 @@ public class StoreFragment extends Fragment {
         rcv.setAdapter(adapter);
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("sneaker");
-
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     Sneaker item = data.getValue(Sneaker.class);
                     lSneaker.add(item);
-                    rcv.setAdapter(new RecyclerViewAdapter(getActivity(),lSneaker));
-                    Log.d(TAG, "Value is: " + data.getKey());
+                    //Log.d(TAG, "Value is: " + data.getKey());
                 }
+                rcv.setAdapter(new RecyclerViewAdapter(getActivity(),lSneaker));
             }
 
             @Override
@@ -79,7 +77,31 @@ public class StoreFragment extends Fragment {
             }
         });
 
+        SearchView searchView = (SearchView)view.findViewById(R.id.search);
+        searchView.setQueryHint("Search View");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchData(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+                searchData(query);
+                return false;
+            }
+        });
+
         return view;
+    }
+
+    private void searchData(String query){
+        List<Sneaker> qSneaker = new ArrayList<>();
+        for(Sneaker item: lSneaker){
+            if(item.getName().toLowerCase().contains(query.toLowerCase())) qSneaker.add(item);
+        }
+        rcv.setAdapter(new RecyclerViewAdapter(getActivity(),qSneaker));
     }
 
 }

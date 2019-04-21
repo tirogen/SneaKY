@@ -8,13 +8,13 @@ public class CartModel {
     private int price;
     private String image;
     private String size;
-    private Timestamp timestamp;
+    private String timestamp;
     private String progress;
     private String note;
 
     public CartModel(){ }
 
-    public CartModel(String name, int price, String image, String size, Timestamp timestamp, String progress, String note) {
+    public CartModel(String name, int price, String image, String size, String timestamp, String progress, String note) {
         this.name = name;
         this.price = price;
         this.image = image;
@@ -56,11 +56,11 @@ public class CartModel {
         this.size = size;
     }
 
-    public Timestamp getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
