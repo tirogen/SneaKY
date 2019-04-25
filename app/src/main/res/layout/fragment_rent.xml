@@ -30,7 +30,7 @@
             android:layout_marginTop="20dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:background="@drawable/layout_shadow"
+            android:background="@drawable/layout_radius"
             tools:src="@drawable/nike" />
 
         <TextView
