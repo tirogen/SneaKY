@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -75,7 +77,12 @@ public class RentFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String key = "6031032921";
+                String key = null;
+                try {
+                    key = LoginActivity.user.getString("username");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 CartModel cartData = new CartModel(rent_name, rent_price, rent_image, rt_size.getSelectedItem().toString(), new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()), "On progress", "Waiting Contact");
                 DatabaseReference mUsers = mDatabase.child("user").child(key);

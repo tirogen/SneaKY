@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity{
 
+    public static JSONObject user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +25,13 @@ public class LoginActivity extends AppCompatActivity{
     public void onLoginClick(View view) {
         Intent intent=new Intent(this, ChulaSSO.class);
         startActivityForResult(intent, ChulaSSO.LOGIN);
-        Log.i("ChulaSSO", "click button");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ChulaSSO.LOGIN && resultCode == Activity.RESULT_OK) {
-            // Ticket can be reuse until expired.
             String ticket = data.getStringExtra("ticket");
-            Log.i("ChulaSSO","ticket:"+ticket);
             HelperTask helperTask = new HelperTask();
             helperTask.execute(ticket);
         }
@@ -52,8 +50,13 @@ public class LoginActivity extends AppCompatActivity{
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             try {
-                JSONObject user = new JSONObject(json);
-                Log.i("ChulaSSO", user.getString("username")+"\n"+json);
+                LoginActivity.user = new JSONObject(json);
+                Log.i("ChulaSSO","go to mainactivity");
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+
+                //Log.i("ChulaSSO", user.getString("username")+"\n"+json);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

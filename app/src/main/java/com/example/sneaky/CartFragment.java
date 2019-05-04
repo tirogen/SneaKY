@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.thekhaeng.recyclerviewmargin.LayoutMarginDecoration;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -51,7 +53,12 @@ public class CartFragment extends Fragment {
         RecyclerCartAdapter adapter = new RecyclerCartAdapter(getActivity(),cSneaker);
         rcv.setAdapter(adapter);
 
-        String key = "6031032921";
+        String key = null;
+        try {
+            key = LoginActivity.user.getString("username");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("user").child(key);
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
