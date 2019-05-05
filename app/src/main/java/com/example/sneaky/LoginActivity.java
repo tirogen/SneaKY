@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     public void onLoginClick(View view) {
-        Intent intent=new Intent(this, ChulaSSO.class);
+        Intent intent = new Intent(this, ChulaSSO.class);
         startActivityForResult(intent, ChulaSSO.LOGIN);
     }
 
